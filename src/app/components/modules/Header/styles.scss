@@ -1,0 +1,181 @@
+.Header {
+  position: fixed;
+  backface-visibility: hidden;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: $white;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.05);
+  @include themify($themes) {
+    background-color: themed('navBackgroundColor');
+    border-bottom: themed('border');
+  }
+  .menu {
+    padding-left: 0;
+    li > a {
+        padding: 0
+    }
+
+  }
+
+  li
+  a {
+    @extend .link;
+    @extend .link--primary;
+    font-family: helvetica, sans-serif;
+  }
+}
+
+/*
+.Header__top {
+  // background-color: $white;
+  padding: 0.25rem 0;
+  transition: all 0.3s ease-out;
+  @media print, screen and (min-width: 52.5em) {
+    padding: 0.75rem 0;
+  }
+  ul > li.delim {
+    color: $medium-gray;
+  }
+  @media screen and (max-width: 39.9375em) {
+      .shrink {
+          padding: 0 1rem;
+      }
+  }
+}
+*/
+
+.Header__search {
+    .input-group {
+        margin: 0px;
+        font-family: $input-font-family;
+        font-size: $input-font-size;
+        .input-group-button {
+            padding-left: 0.5em;
+        }
+        .input-group-field {
+            box-shadow: none;
+            border: 0px transparent;
+            transition: 0.3s ease-in;
+            position: relative;
+            background: transparent;
+            &:hover, &:focus {
+                box-shadow: 2px 2px 0 0 $color-teal;
+                border: 0px transparent;
+                border-radius: 0;
+            }
+            @include themify($themes) {
+                color: themed('textColorPrimary');
+                caret-color: themed('textColorAccent');
+            }
+        }
+    }
+}
+
+.Header__top-steemit {
+  margin-right: -22px;
+  .beta {
+    position: absolute;
+    top: 37px;
+    left: 133px;
+    font-size: 0.7rem;
+    @include opacity(0);
+    display: none;
+    @include themify($themes) {
+      color: themed('textColorSecondary');
+    }
+    @include MQ(L) {
+      display: block;
+    }
+  }
+}
+
+.ConnectionError {
+  margin-right: 4rem;
+  color: #ec5840;
+}
+
+.Header__logotype {
+    display: block;
+    transition: 0.2s all ease-in-out;
+    height: auto;
+    width: 138px;
+    height: 38px;
+  .icon-svg {
+    fill: $color-teal;
+    @include themify($themes) {
+      fill: themed('colorAccent');
+    }
+  }
+  @media only screen and (min-width: 400px) {
+    height: 37px;
+  }
+}
+
+.sub-menu {
+    li.show-for-medium.submit-story > a {
+        @extend .e-btn;
+        margin-right: 22px;
+        margin-left: 16px;
+        padding: 8px 24px;
+        margin: 0 6px;
+        @include themify($themes) {
+            color: themed('buttonText');
+            background: themed('colorAccentReverse');  
+        }
+        &:hover, &:focus {
+            @include themify($themes) {
+                color: themed('textColorAccentHover');  
+            }
+        }
+        transition: all 0.3s ease-in-out;
+        }
+    }
+
+.TopRightMenu__userpic {
+  padding: 0;
+  position: relative;
+  a {
+      padding: 6px;
+  }
+  .Userpic {
+    width: 36px !important;
+    height: 36px !important;
+  }
+}
+
+.TopRightMenu__notificounter {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    > .NotifiCounter {
+        display: block;
+    }
+}
+
+li.TopRightMenu__hamburger.toggle-menu {
+    @include hamburger();
+    position: relative;
+    > li {
+        padding-left: 0.25rem;
+    }
+    > a {
+        padding: 14px 0 14px 14px;
+    }
+    &::after {
+      transition: 0.2s all ease-in-out;
+      @include themify($themes) {
+        background: themed('textColorPrimary');
+        box-shadow: 0 7px 0 themed('textColorPrimary'), 0 14px 0 themed('textColorPrimary');
+      }
+    }
+    &:hover {
+      &::after {
+        @include themify($themes) {
+          background: themed('textColorAccent');
+          box-shadow: 0 7px 0 themed('textColorAccent'), 0 14px 0 themed('textColorAccent');
+        }
+      }
+    }
+}

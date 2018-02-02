@@ -35,16 +35,15 @@
 @import "./elements/QrKeyView";
 
 // modules
-@import "./modules/Header";
+@import "./modules/Header/styles";
 @import "./modules/SignUp";
 @import "./modules/LoginForm";
 @import "./modules/MiniHeader";
-@import "./modules/SidePanel";
+@import "./modules/SidePanel/styles";
 @import "./modules/Settings";
 @import "./modules/BottomPanel";
 @import "./modules/UserWallet";
 @import "./modules/Powerdown";
-@import "./modules/TopRightMenu";
 @import "./modules/ConfirmTransactionForm";
 @import "./modules/Transfer";
 

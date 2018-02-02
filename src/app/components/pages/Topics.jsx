@@ -3,6 +3,8 @@ import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import tt from 'counterpart';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class Topics extends React.Component {
     static propTypes = {
@@ -27,34 +29,63 @@ class Topics extends React.Component {
         return res;
     }
 
+    handleChange = selectedOption => {
+        browserHistory.push(selectedOption.value);
+    };
+
     render() {
-        // console.log('Topics');
-        const { props: { order, current, compact, className } } = this;
+        const {
+            props: { order, current, compact, className, username },
+        } = this;
         let categories = this.props.categories.get('trending');
         categories = categories.take(50);
-
         const cn = 'Topics' + (className ? ` ${className}` : '');
-        const currentValue = `/${order}/${current}`;
+        const currentValue = current ? `/${order}/${current}` : `/${order}`;
+        let selected = current === 'feed' ? `/@${username}/feed` : currentValue;
+
+        const xmyFeed = username && (
+            <option key={'feed'} value={`/@${username}/feed`}>
+                {tt('g.my_feed')}
+            </option>
+        );
+
+        const extras = username => {
+            const ex = {
+                allTags: order => ({
+                    value: `/${order}`,
+                    label: `${tt('g.all_tags')}`,
+                }),
+                myFeed: name => ({
+                    value: `/@${name}/feed`,
+                    label: `${tt('g.my_feed')}`,
+                }),
+            };
+            return username
+                ? [ex.allTags(order), ex.myFeed(username)]
+                : [ex.allTags(order)];
+        };
+
+        const opts = extras(username).concat(
+            categories
+                .map(cat => {
+                    const link = order ? `/${order}/${cat}` : `/${cat}`;
+                    return { value: link, label: cat };
+                })
+                .toJS()
+        );
 
         if (compact) {
             return (
-                <select
-                    className={cn}
-                    onChange={e => browserHistory.push(e.target.value)}
-                    value={currentValue}
-                >
-                    <option key={'*'} value={'/' + order}>
-                        {tt('g.all_tags')}
-                    </option>
-                    {categories.map(cat => {
-                        const link = order ? `/${order}/${cat}` : `/${cat}`;
-                        return (
-                            <option key={cat} value={link}>
-                                {cat}
-                            </option>
-                        );
-                    })}
-                </select>
+                <span>
+                    <Select
+                        name="select-topic"
+                        className="react-select"
+                        value={selected}
+                        onChange={this.handleChange}
+                        options={opts}
+                        clearable={false}
+                    />
+                </span>
             );
         }
 
@@ -72,12 +103,17 @@ class Topics extends React.Component {
                 </li>
             );
         });
+
         return (
             <div className="c-sidebar__module">
                 <div className="c-sidebar__header">
-                    <h3 className="c-sidebar__h3" key={'*'}>
-                        {tt('g.tags_and_topics')}
-                    </h3>
+                    <Link
+                        to={'/' + order}
+                        className="c-sidebar__h3"
+                        activeClassName="active"
+                    >
+                        {tt('g.all_tags')}
+                    </Link>
                 </div>
                 <div className="c-sidebar__content">
                     <ul className="c-sidebar__list">

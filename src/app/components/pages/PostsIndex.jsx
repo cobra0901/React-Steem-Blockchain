@@ -15,6 +15,7 @@ import SidebarLinks from 'app/components/elements/SidebarLinks';
 import SidebarNewUsers from 'app/components/elements/SidebarNewUsers';
 import ArticleLayoutSelector from 'app/components/modules/ArticleLayoutSelector';
 import Topics from './Topics';
+import SortOrder from 'app/components/elements/SortOrder';
 
 class PostsIndex extends React.Component {
     static propTypes = {
@@ -57,8 +58,8 @@ class PostsIndex extends React.Component {
 
     loadMore(last_post) {
         if (!last_post) return;
-        let { accountname } = this.props.routeParams;
         let {
+            accountname,
             category,
             order = constants.DEFAULT_SORT_ORDER,
         } = this.props.routeParams;
@@ -173,13 +174,13 @@ class PostsIndex extends React.Component {
             }
             if (typeof category !== 'undefined') {
                 page_title = `${page_title}: ${category}`; // maybe todo: localize the colon?
+            } else {
+                page_title = `${page_title}: ${tt('g.all_tags')}`;
             }
         }
-
         const layoutClass = this.props.blogmode
             ? ' layout-block'
             : ' layout-list';
-
         return (
             <div
                 className={
@@ -191,18 +192,30 @@ class PostsIndex extends React.Component {
                 <article className="articles">
                     <div className="articles__header">
                         <div className="articles__header-col">
-                            <h1 className="articles__h1">{page_title}</h1>
-                        </div>
-                        <div className="articles__header-col articles__header-col--right">
+                            <h1 className="articles__h1 show-for-large">
+                                {page_title}
+                            </h1>
+
                             <div className="articles__tag-selector">
                                 <Topics
+                                    username={this.props.username}
                                     order={topics_order}
                                     current={category}
                                     compact
                                 />
                             </div>
-                            <ArticleLayoutSelector />
                         </div>
+                        <div className="articles__header-col articles__header-col--right hide-for-large ">
+                            {category !== 'feed' && (
+                                <SortOrder
+                                    sortOrder={this.props.sortOrder}
+                                    topic={this.props.topic}
+                                    current={category}
+                                    horizontal={false}
+                                />
+                            )}
+                        </div>
+                        <ArticleLayoutSelector />
                     </div>
                     <hr className="articles__hr" />
                     {!fetching && (posts && !posts.size) ? (
@@ -233,6 +246,7 @@ class PostsIndex extends React.Component {
                         order={topics_order}
                         current={category}
                         compact={false}
+                        username={this.props.username}
                     />
                     <small>
                         <a
@@ -254,7 +268,7 @@ class PostsIndex extends React.Component {
 module.exports = {
     path: ':order(/:category)',
     component: connect(
-        state => {
+        (state, ownProps) => {
             return {
                 discussions: state.global.get('discussion_idx'),
                 status: state.global.get('status'),
@@ -264,6 +278,8 @@ module.exports = {
                     state.user.getIn(['current', 'username']) ||
                     state.offchain.get('account'),
                 blogmode: state.app.getIn(['user_preferences', 'blogmode']),
+                sortOrder: ownProps.params.order,
+                topic: ownProps.params.category,
             };
         },
         dispatch => {
