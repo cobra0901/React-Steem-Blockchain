@@ -183,6 +183,7 @@ class Header extends React.Component {
                 : { link: '#', onClick: showLogin, value: tt('g.login') },
         ];
         return (
+            
             <header className="Header noPrint">
                 <nav className="Header__top header">
                     <div className="expanded row">
@@ -343,7 +344,7 @@ class Header extends React.Component {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </nav>
             </header>
         );
     }

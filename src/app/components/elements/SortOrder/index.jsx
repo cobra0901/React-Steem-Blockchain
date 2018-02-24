@@ -40,7 +40,11 @@ const SortOrder = ({ topic, sortOrder, horizontal }) => {
                 return (
                     <li
                         key={i.value}
-                        className={`nav__block-list-item ${i.value === sortOrder ? 'nav__block-list-item--active' : ''}`}
+                        className={`nav__block-list-item ${
+                            i.value === sortOrder
+                                ? 'nav__block-list-item--active'
+                                : ''
+                        }`}
                     >
                         <Link to={i.link}>{i.label}</Link>
                     </li>
