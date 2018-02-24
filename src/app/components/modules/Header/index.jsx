@@ -111,14 +111,11 @@ class Header extends React.Component {
             browserHistory.push(a.pathname + a.search + a.hash);
         };
 
-        const mcn = 'menu' + (vertical ? ' vertical show-for-small-only' : '');
-        const mcl = vertical ? '' : ' sub-menu';
-        const lcn = vertical ? '' : 'show-for-medium';
         // Since navigate isn't set, defaultNavigate will always be used.
         const nav = navigate || defaultNavigate;
 
         const submit_story = $STM_Config.read_only_mode ? null : (
-            <li className={lcn + ' submit-story' + (vertical ? ' last' : '')}>
+            <li className={' submit-story' + (vertical ? ' last' : '')}>
                 <a href="/submit.html" onClick={nav}>
                     {tt('g.submit_a_story')}
                 </a>
@@ -142,7 +139,6 @@ class Header extends React.Component {
         const settings_link = `/@${username}/settings`;
         const pathCheck = userPath === '/submit.html' ? true : null;
 
-        // change back to if(username) after bug fix:  Clicking on Login does not cause drop-down to close #TEMP!
         const user_menu = [
             {
                 link: feed_link,
@@ -193,10 +189,10 @@ class Header extends React.Component {
                     <div className="expanded row">
                         <div className="columns">
                             <ul className="menu Header__menu">
-                                <li>
+                                {/*LOGO*/}
+                                <li className="Header__logotype">
                                     <Link to={logo_link}>
                                         <svg
-                                            className="Header__logotype"
                                             width="148"
                                             height="38"
                                             viewBox="0 0 148 38"
@@ -226,6 +222,7 @@ class Header extends React.Component {
                                         </svg>
                                     </Link>
                                 </li>
+                                {/*BETA*/}
                                 <li className="Header__top-steemit show-for-medium noPrint">
                                     <Link to={logo_link}>
                                         <span className="beta fade-in--10">
@@ -233,70 +230,94 @@ class Header extends React.Component {
                                         </span>
                                     </Link>
                                 </li>
-                                <span className="show-for-large">
-                                    {/*TODO must hide this if it is blog view... i.e @username only.
-                                        or make sure that when order / category are not what we want
-                                        sort order defaults.
-                                    */}
-                                    <SortOrder
-                                        sortOrder={order}
-                                        topic={category}
-                                        horizontal={true}
-                                    />
-                                </span>
-                                <SearchInput />
-                            </ul>
-                        </div>
-                        <div className="columns shrink">
-                            {loggedIn && (
-                                <ul className={mcn + mcl}>
-                                    {!pathCheck ? submit_story : null}
-                                    {!vertical && submit_icon}
-                                    <LinkWithDropdown
-                                        closeOnClickOutside
-                                        dropdownPosition="bottom"
-                                        dropdownAlignment="right"
-                                        dropdownContent={
-                                            <VerticalMenu
-                                                items={user_menu}
-                                                title={username}
-                                            />
-                                        }
+                                {/*SORT*/}
+                                <li>
+                                    <span className="show-for-large">
+                                        <SortOrder
+                                            sortOrder={order}
+                                            topic={category}
+                                            horizontal={true}
+                                        />
+                                    </span>
+                                </li>
+
+                                {/*SEARCH - BIG*/}
+                                <li className={'hide-for-large Header__search'}>
+                                    <a
+                                        href="/static/search.html"
+                                        title={tt('g.search')}
                                     >
-                                        {!vertical && (
-                                            <li
-                                                className={
-                                                    'TopRightMenu__userpic '
-                                                }
-                                            >
-                                                <a
-                                                    href={account_link}
+                                        <Icon name="search" size="1x" />
+                                    </a>
+                                </li>
+                                {/*SEARCH - SMALL*/}
+                                <li className={'show-for-large Header__search'}>
+                                    <form
+                                        className="input-group"
+                                        action="/static/search.html"
+                                        method="GET"
+                                    >
+                                        <button
+                                            className="input-group-button"
+                                            href="/static/search.html"
+                                            type="submit"
+                                            title={tt('g.search')}
+                                        >
+                                            <Icon name="search" size="1_5x" />
+                                        </button>
+                                        <input
+                                            className="input-group-field"
+                                            type="text"
+                                            placeholder="search"
+                                            name="q"
+                                            autoComplete="off"
+                                        />
+                                    </form>
+                                </li>
+
+                                {/*SUBMIT STORY*/}
+                                <li>{submit_story}</li>
+                                <li>{submit_icon}</li>
+
+                                {/*USER AVATAR*/}
+                                <li>
+                                    {loggedIn && (
+                                        <LinkWithDropdown
+                                            closeOnClickOutside
+                                            dropdownPosition="bottom"
+                                            dropdownAlignment="right"
+                                            dropdownContent={
+                                                <VerticalMenu
+                                                    items={user_menu}
                                                     title={username}
-                                                    onClick={e =>
-                                                        e.preventDefault()
+                                                />
+                                            }
+                                        >
+                                            {!vertical && (
+                                                <li
+                                                    className={
+                                                        'Header__userpic '
                                                     }
                                                 >
-                                                    <Userpic
-                                                        account={username}
-                                                    />
-                                                </a>
-                                                <div className="TopRightMenu__notificounter">
-                                                    <NotifiCounter fields="total" />
-                                                </div>
-                                            </li>
-                                        )}
-                                    </LinkWithDropdown>
-                                    <li className="toggle-menu TopRightMenu__hamburger">
-                                        <a href="#" onClick={showSidePanel}>
-                                            <span className="hamburger" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            )}
-                            {probablyLoggedIn && (
-                                <ul className={mcn + mcl}>
+                                                    <a
+                                                        href={account_link}
+                                                        title={username}
+                                                        onClick={e =>
+                                                            e.preventDefault()
+                                                        }
+                                                    >
+                                                        <Userpic
+                                                            account={username}
+                                                        />
+                                                    </a>
+                                                </li>
+                                            )}
+                                        </LinkWithDropdown>
+                                    )}
+                                </li>
+                                {/*LOGGED IN LOADING INDICATOR*/}
+                                {probablyLoggedIn && (
                                     <li
-                                        className={lcn}
                                         style={{
                                             paddingTop: 0,
                                             paddingBottom: 0,
@@ -307,38 +328,23 @@ class Header extends React.Component {
                                             inline
                                         />
                                     </li>
-                                    <li className="toggle-menu TopRightMenu__hamburger">
-                                        <a href="#" onClick={showSidePanel}>
-                                            <span className="hamburger" />
-                                        </a>
-                                    </li>
-                                </ul>
-                            )}
-                            {!loggedIn &&
-                                !probablyLoggedIn && (
-                                    <ul className={mcn + mcl}>
-                                        <li className={lcn}>
-                                            <a href={SIGNUP_URL}>
-                                                {tt('g.sign_up')}
-                                            </a>
-                                        </li>
-                                        <li className={lcn}>
-                                            <a
-                                                href="/login.html"
-                                                onClick={showLogin}
-                                            >
-                                                {tt('g.login')}
-                                            </a>
-                                        </li>
-                                        {submit_story}
-                                        {!vertical && submit_icon}
-                                        <li className="toggle-menu TopRightMenu__hamburger">
-                                            <a href="#" onClick={showSidePanel}>
-                                                <span className="hamburger" />
-                                            </a>
-                                        </li>
-                                    </ul>
                                 )}
+                                {/*NOT LOGGED IN SIGN IN AND SIGN UP LINKS*/}
+                                <li>
+                                    <a href={SIGNUP_URL}>{tt('g.sign_up')}</a>
+                                </li>
+                                <li>
+                                    <a href="/login.html" onClick={showLogin}>
+                                        {tt('g.login')}
+                                    </a>
+                                </li>
+                                {/*HAMBURGER*/}
+                                <li className="toggle-menu Header__hamburger">
+                                    <a href="#" onClick={showSidePanel}>
+                                        <span className="hamburger" />
+                                    </a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>

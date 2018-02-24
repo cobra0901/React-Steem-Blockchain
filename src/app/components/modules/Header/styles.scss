@@ -27,25 +27,6 @@
   }
 }
 
-/*
-.Header__top {
-  // background-color: $white;
-  padding: 0.25rem 0;
-  transition: all 0.3s ease-out;
-  @media print, screen and (min-width: 52.5em) {
-    padding: 0.75rem 0;
-  }
-  ul > li.delim {
-    color: $medium-gray;
-  }
-  @media screen and (max-width: 39.9375em) {
-      .shrink {
-          padding: 0 1rem;
-      }
-  }
-}
-*/
-
 .Header__search {
     .input-group {
         margin: 0px;
@@ -73,7 +54,7 @@
     }
 }
 
-.Header__top-steemit {
+.Header__beta {
   margin-right: -22px;
   .beta {
     position: absolute;
@@ -113,27 +94,7 @@
   }
 }
 
-.sub-menu {
-    li.show-for-medium.submit-story > a {
-        @extend .e-btn;
-        margin-right: 22px;
-        margin-left: 16px;
-        padding: 8px 24px;
-        margin: 0 6px;
-        @include themify($themes) {
-            color: themed('buttonText');
-            background: themed('colorAccentReverse');  
-        }
-        &:hover, &:focus {
-            @include themify($themes) {
-                color: themed('textColorAccentHover');  
-            }
-        }
-        transition: all 0.3s ease-in-out;
-        }
-    }
-
-.TopRightMenu__userpic {
+.Header__userpic {
   padding: 0;
   position: relative;
   a {
@@ -145,16 +106,7 @@
   }
 }
 
-.TopRightMenu__notificounter {
-    position: absolute;
-    top: 4px;
-    right: 4px;
-    > .NotifiCounter {
-        display: block;
-    }
-}
-
-li.TopRightMenu__hamburger.toggle-menu {
+li.Header__hamburger.toggle-menu {
     @include hamburger();
     position: relative;
     > li {
