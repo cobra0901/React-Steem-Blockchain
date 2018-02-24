@@ -5,50 +5,25 @@ import { browserHistory } from 'react-router';
 import tt from 'counterpart';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
+import PropTypes from 'prop-types';
 
-class Topics extends React.Component {
-    static propTypes = {
-        categories: React.PropTypes.object.isRequired,
-        order: React.PropTypes.string,
-        current: React.PropTypes.string,
-        className: React.PropTypes.string,
-        compact: React.PropTypes.bool,
-    };
+const Topics = ({
+    order,
+    current,
+    compact,
+    className,
+    username,
+    categories,
+}) => {
 
-    constructor(props) {
-        super(props);
-        this.state = {};
-    }
-
-    shouldComponentUpdate(nextProps, nextState) {
-        const res =
-            this.props.categories !== nextProps.categories ||
-            this.props.current !== nextProps.current ||
-            this.props.order !== nextProps.order ||
-            this.state !== nextState;
-        return res;
-    }
-
-    handleChange = selectedOption => {
+    const handleChange = selectedOption => {
         browserHistory.push(selectedOption.value);
     };
 
-    render() {
-        const {
-            props: { order, current, compact, className, username },
-        } = this;
-        let categories = this.props.categories.get('trending');
-        categories = categories.take(50);
-        const cn = 'Topics' + (className ? ` ${className}` : '');
-        const currentValue = current ? `/${order}/${current}` : `/${order}`;
-        let selected = current === 'feed' ? `/@${username}/feed` : currentValue;
+    const currentValue = current ? `/${order}/${current}` : `/${order}`;
+    let selected = current === 'feed' ? `/@${username}/feed` : currentValue;
 
-        const xmyFeed = username && (
-            <option key={'feed'} value={`/@${username}/feed`}>
-                {tt('g.my_feed')}
-            </option>
-        );
-
+    if (compact) {
         const extras = username => {
             const ex = {
                 allTags: order => ({
@@ -74,22 +49,20 @@ class Topics extends React.Component {
                 .toJS()
         );
 
-        if (compact) {
-            return (
-                <span>
-                    <Select
-                        name="select-topic"
-                        className="react-select"
-                        value={selected}
-                        onChange={this.handleChange}
-                        options={opts}
-                        clearable={false}
-                    />
-                </span>
-            );
-        }
-
-        categories = categories.map(cat => {
+        return (
+            <span>
+                <Select
+                    name="select-topic"
+                    className="react-select"
+                    value={selected}
+                    onChange={handleChange}
+                    options={opts}
+                    clearable={false}
+                />
+            </span>
+        );
+    } else {
+        const categoriesLinks = categories.map(cat => {
             const link = order ? `/${order}/${cat}` : `/hot/${cat}`;
             return (
                 <li className="c-sidebar__list-item" key={cat}>
@@ -103,7 +76,6 @@ class Topics extends React.Component {
                 </li>
             );
         });
-
         return (
             <div className="c-sidebar__module">
                 <div className="c-sidebar__header">
@@ -117,7 +89,7 @@ class Topics extends React.Component {
                 </div>
                 <div className="c-sidebar__content">
                     <ul className="c-sidebar__list">
-                        {categories}
+                        {categoriesLinks}
                         <li className="c-sidebar__link">
                             <Link
                                 className="c-sidebar__link c-sidebar__link--emphasis"
@@ -131,8 +103,13 @@ class Topics extends React.Component {
             </div>
         );
     }
+};
+
+Topics.propTypes = {
+    categories: React.PropTypes.object.isRequired,
+    order: React.PropTypes.string.isRequired,
+    current: React.PropTypes.string.isRequired,
+    compact: React.PropTypes.bool.isRequired,
 }
 
-export default connect(state => ({
-    categories: state.global.get('tag_idx'),
-}))(Topics);
+export default Topics;

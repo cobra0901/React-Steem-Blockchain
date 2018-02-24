@@ -4,12 +4,7 @@ import CloseButton from 'react-foundation-components/lib/global/close-button';
 import Icon from 'app/components/elements/Icon';
 import { Link } from 'react-router';
 
-const SidePanel = ({
-    alignment,
-    visible,
-    hideSidePanel,
-    username,
-}) => {
+const SidePanel = ({ alignment, visible, hideSidePanel, username }) => {
     visible && document.addEventListener('click', hideSidePanel);
     !visible && document.removeEventListener('click', hideSidePanel);
 
@@ -80,13 +75,15 @@ const SidePanel = ({
             {
                 value: 'blocktrades',
                 label: 'Blocktrades',
-                link: `https://blocktrades.us/?input_coin_type=eth&output_coin_type=steem&receive_address=${username}`,
+                link: `https://blocktrades.us/?input_coin_type=eth&output_coin_type=steem&receive_address=${
+                    username
+                }`,
             },
             {
                 value: 'gopax',
                 label: 'GOPAX',
                 link: 'https://www.gopax.co.kr/exchange?market=STEEM/KRW',
-            }
+            },
         ],
         external: [
             {
@@ -174,7 +171,7 @@ const SidePanel = ({
                     {sidePanelLinks['internal'].map(makeInternalLink)}
                 </ul>
                 <a className="menu-section">
-+                   {tt('navigation.third_party_exchanges')}
+                    + {tt('navigation.third_party_exchanges')}
                 </a>
                 <ul className="vertical menu">
                     {sidePanelLinks['exchanges'].map(makeExternalLink)}

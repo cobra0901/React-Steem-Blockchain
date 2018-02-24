@@ -27,6 +27,7 @@ class PostsIndex extends React.Component {
         loading: PropTypes.bool,
         username: PropTypes.string,
         blogmode: PropTypes.bool,
+        categories: PropTypes.object,
     };
 
     static defaultProps = {
@@ -86,6 +87,9 @@ class PostsIndex extends React.Component {
             category,
             order = constants.DEFAULT_SORT_ORDER,
         } = this.props.routeParams;
+
+        const { categories } = this.props;
+
         let topics_order = order;
         let posts = [];
         let emptyText = '';
@@ -200,7 +204,8 @@ class PostsIndex extends React.Component {
                                     username={this.props.username}
                                     order={topics_order}
                                     current={category}
-                                    compact
+                                    categories={categories}
+                                    compact={true}
                                 />
                             </div>
                         </div>
@@ -246,6 +251,7 @@ class PostsIndex extends React.Component {
                         current={category}
                         compact={false}
                         username={this.props.username}
+                        categories={categories}
                     />
                     <small>
                         <a
@@ -279,6 +285,9 @@ module.exports = {
                 blogmode: state.app.getIn(['user_preferences', 'blogmode']),
                 sortOrder: ownProps.params.order,
                 topic: ownProps.params.category,
+                categories: state.global
+                    .getIn(['tag_idx', 'trending'])
+                    .take(50),
             };
         },
         dispatch => {
