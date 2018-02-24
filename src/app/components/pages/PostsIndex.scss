@@ -100,7 +100,7 @@
     }   
     &--tags {
       display: none;
-      @include MQ(M) {
+      @include MQ(FL) {
         display: block;
       }
       @include MQ(L) {

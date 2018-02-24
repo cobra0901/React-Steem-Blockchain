@@ -195,7 +195,6 @@ class PostsIndex extends React.Component {
                             <h1 className="articles__h1 show-for-large">
                                 {page_title}
                             </h1>
-
                             <div className="articles__tag-selector">
                                 <Topics
                                     username={this.props.username}
@@ -241,7 +240,7 @@ class PostsIndex extends React.Component {
                         </div>
                     )}
                 </aside>
-                <aside className="c-sidebar c-sidebar--left">
+                <aside className="c-sidebar c-sidebar--left raptor">
                     <Topics
                         order={topics_order}
                         current={category}
