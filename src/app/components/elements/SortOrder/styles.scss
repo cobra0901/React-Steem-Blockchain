@@ -1,0 +1,32 @@
+.navrrr {
+    display: flex;
+    width: 100%;
+    // max-width: 1600px;
+    // margin: 0 auto;
+    align-items: center;
+    padding: 0px 12px;
+}
+
+.nav__block-list-item {
+    margin: 0 10px;
+    text-align: center;
+    position: relative;
+    top: 2px;
+    list-style: none;
+    padding: 15px 4px;
+    transition: 0.3s all ease-in-out;
+    display: flex;
+    align-items: center;
+    &--active {
+        box-shadow: 0 2px 0 0 #06D6A9;
+        a {
+            color: $color-teal;
+        }
+    }
+    &:hover, &:focus {
+        box-shadow: 0 2px 0 0 $color-teal;
+        a {
+            color: $color-teal;
+        }
+    }
+}

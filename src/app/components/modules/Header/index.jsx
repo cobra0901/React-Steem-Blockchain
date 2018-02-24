@@ -36,7 +36,6 @@ class Header extends React.Component {
     setPageTitle = () => {
         const route = resolveRoute(this.props.pathname);
         // HACK: We ought to have a better way of doing this rather than accessing global document.
-        // Also this only happens where the Header Component is present...
         // e.g. https://github.com/gaearon/react-document-title
         const page_title = getPageTitle(route, this.props.account_meta);
         document.title = page_title + ' — ' + APP_NAME;
@@ -116,9 +115,9 @@ class Header extends React.Component {
 
         const submit_story = $STM_Config.read_only_mode ? null : (
             <li className={' submit-story' + (vertical ? ' last' : '')}>
-                <a href="/submit.html" onClick={nav}>
+                <Link to="/submit.html">
                     {tt('g.submit_a_story')}
-                </a>
+                </Link>
             </li>
         );
 
@@ -185,7 +184,7 @@ class Header extends React.Component {
         ];
         return (
             <header className="Header noPrint">
-                <div className="Header__top header">
+                <nav className="Header__top header">
                     <div className="expanded row">
                         <div className="columns">
                             <ul className="menu Header__menu">
@@ -231,16 +230,13 @@ class Header extends React.Component {
                                     </Link>
                                 </li>
                                 {/*SORT*/}
-                                <li>
-                                    <span className="show-for-large">
-                                        <SortOrder
-                                            sortOrder={order}
-                                            topic={category}
-                                            horizontal={true}
-                                        />
-                                    </span>
-                                </li>
-
+                                <div className="nav__block show-for-large">
+                                    <SortOrder
+                                        sortOrder={order}
+                                        topic={category}
+                                        horizontal={true}
+                                    />
+                                </div>
                                 {/*SEARCH - BIG*/}
                                 <li className={'hide-for-large Header__search'}>
                                     <a

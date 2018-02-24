@@ -35,12 +35,12 @@ const SortOrder = ({ topic, sortOrder, horizontal }) => {
     ];
 
     return horizontal ? (
-        <ul className="menu">
+        <ul className="navrrr">
             {sorts(topic).map(i => {
                 return (
                     <li
                         key={i.value}
-                        className={i.value === sortOrder ? 'active' : ''}
+                        className={`nav__block-list-item ${i.value === sortOrder ? 'nav__block-list-item--active' : ''}`}
                     >
                         <Link to={i.link}>{i.label}</Link>
                     </li>
