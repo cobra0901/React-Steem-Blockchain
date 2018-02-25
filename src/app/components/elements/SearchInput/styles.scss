@@ -3,10 +3,6 @@ svg.search-input__icon {
     margin: 11px;
     pointer-events: none;
     fill: $color-blue-dark;
-    &:hover {
-        background-color: $color-teal;
-        fill: $color-white;
-    }
 }
 
 input.search-input__inner {
