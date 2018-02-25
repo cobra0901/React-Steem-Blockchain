@@ -1,57 +1,36 @@
 import React from 'react';
 import tt from 'counterpart';
 
-const SearchInput = () => (
-    <form className="input-group" action="/static/search.html" method="GET">
-
-        <button
-            className="input-group-button"
-            href="/static/search.html"
-            type="submit"
-            title={tt('g.search')}
+const SearchInput = () => {
+    const magnifyingGlass =
+        <svg
+            className="search-input__icon"
+            x="0px"
+            y="0px"
+            width="18"
+            height="18"
+            viewBox="0 0 500 500"
+            version="1.1"
+            xmlns="http://www.w3.org/2000/svg"
+            preserveAspectRatio="none"
         >
-            <svg
-                className="nav__item nav__icon nav__icon--search icon"
-                viewBox="0 0 34 34"
-                version="1.1"
-                xmlns="http://www.w3.org/2000/svg"
-            >
-                <title>Search icon</title>
-                <g
-                    className="icon__search"
-                    stroke="none"
-                    strokeWidth="1"
-                    fill="none"
-                    fillRule="evenodd"
-                    transform="translate(-246.000000, -15.000000)"
-                >
-                    <g transform="translate(247.000000, 16.000000)">
-                        <g id="search">
-                            <circle
-                                className="icon-svg__border"
-                                cx="16"
-                                cy="16"
-                                r="16"
-                            />
-                            <path
-                                d="M14.3681591,18.5706017 L11.3928571,21.6 L14.3681591,18.5706017 C13.273867,17.6916019 12.5714286,16.3293241 12.5714286,14.8 C12.5714286,12.1490332 14.6820862,10 17.2857143,10 C19.8893424,10 22,12.1490332 22,14.8 C22,17.4509668 19.8893424,19.6 17.2857143,19.6 C16.1841009,19.6 15.1707389,19.215281 14.3681591,18.5706017 Z"
-                                className="icon-svg__shape"
-                            />
-                        </g>
-                    </g>
-                </g>
-            </svg>
-        </button>
-
-
-        <input
-            className="input-group-field"
-            type="text"
-            placeholder="search"
-            name="q"
-            autoComplete="off"
-        />
-    </form>
-);
+            <g width="100%" height="100%">
+                <path
+                    className="search-input__path"
+                    strokeWidth="2"
+                    d="M447.05,428l-109.6-109.6c29.4-33.8,47.2-77.9,47.2-126.1C384.65,86.2,298.35,0,192.35,0C86.25,0,0.05,86.3,0.05,192.3   s86.3,192.3,192.3,192.3c48.2,0,92.3-17.8,126.1-47.2L428.05,447c2.6,2.6,6.1,4,9.5,4s6.9-1.3,9.5-4   C452.25,441.8,452.25,433.2,447.05,428z M26.95,192.3c0-91.2,74.2-165.3,165.3-165.3c91.2,0,165.3,74.2,165.3,165.3   s-74.1,165.4-165.3,165.4C101.15,357.7,26.95,283.5,26.95,192.3z"
+                />
+            </g>
+        </svg>
+    
+    return (
+        <div>
+            <form className={'search-input'}>
+                {magnifyingGlass}
+                <input className={'search-input__inner search-input__inner--small'} type="search" placeholder="Search"/>
+            </form>
+        </div>
+    )
+}
 
 export default SearchInput;

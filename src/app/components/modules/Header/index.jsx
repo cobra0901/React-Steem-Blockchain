@@ -236,11 +236,10 @@ class Header extends React.Component {
                                     />
                                 </div>
 
-
                                 {/*CUSTOM SEARCH*/}
                                 <li>
                                     <div id="custom-search">
-                                       <SearchInput />
+                                        <SearchInput />
                                     </div>
                                 </li>
 
