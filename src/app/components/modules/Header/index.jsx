@@ -115,9 +115,7 @@ class Header extends React.Component {
 
         const submit_story = $STM_Config.read_only_mode ? null : (
             <li className={' submit-story' + (vertical ? ' last' : '')}>
-                <Link to="/submit.html">
-                    {tt('g.submit_a_story')}
-                </Link>
+                <Link to="/submit.html">{tt('g.submit_a_story')}</Link>
             </li>
         );
 
@@ -183,7 +181,6 @@ class Header extends React.Component {
                 : { link: '#', onClick: showLogin, value: tt('g.login') },
         ];
         return (
-            
             <header className="Header noPrint">
                 <nav className="Header__top header">
                     <div className="expanded row">
@@ -238,38 +235,13 @@ class Header extends React.Component {
                                         horizontal={true}
                                     />
                                 </div>
-                                {/*SEARCH - BIG*/}
-                                <li className={'hide-for-large Header__search'}>
-                                    <a
-                                        href="/static/search.html"
-                                        title={tt('g.search')}
-                                    >
-                                        <Icon name="search" size="1x" />
-                                    </a>
-                                </li>
-                                {/*SEARCH - SMALL*/}
-                                <li className={'show-for-large Header__search'}>
-                                    <form
-                                        className="input-group"
-                                        action="/static/search.html"
-                                        method="GET"
-                                    >
-                                        <button
-                                            className="input-group-button"
-                                            href="/static/search.html"
-                                            type="submit"
-                                            title={tt('g.search')}
-                                        >
-                                            <Icon name="search" size="1_5x" />
-                                        </button>
-                                        <input
-                                            className="input-group-field"
-                                            type="text"
-                                            placeholder="search"
-                                            name="q"
-                                            autoComplete="off"
-                                        />
-                                    </form>
+
+
+                                {/*CUSTOM SEARCH*/}
+                                <li>
+                                    <div id="custom-search">
+                                       <SearchInput />
+                                    </div>
                                 </li>
 
                                 {/*SUBMIT STORY*/}
