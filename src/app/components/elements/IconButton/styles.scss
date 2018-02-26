@@ -1,0 +1,15 @@
+span.icon-button {
+    display: block;
+}
+
+.icon-button__svg {
+    stroke: red;
+    stroke-width: 0.5;
+    fill: transparent;
+    :hover {
+        stroke: green !important;
+        stroke-width: 1;
+        fill: pink;
+        cursor: pointer;
+    }
+}
