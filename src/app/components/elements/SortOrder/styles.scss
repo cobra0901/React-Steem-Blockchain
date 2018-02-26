@@ -1,8 +1,6 @@
-.navrrr {
+.nav__block-list {
     display: flex;
     width: 100%;
-    // max-width: 1600px;
-    // margin: 0 auto;
     align-items: center;
     padding: 0px 12px;
 }
@@ -11,7 +9,6 @@
     margin: 0 10px;
     text-align: center;
     position: relative;
-    top: 2px;
     list-style: none;
     padding: 15px 4px;
     transition: 0.3s all ease-in-out;

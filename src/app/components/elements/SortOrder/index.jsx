@@ -35,7 +35,7 @@ const SortOrder = ({ topic, sortOrder, horizontal }) => {
     ];
 
     return horizontal ? (
-        <ul className="navrrr">
+        <ul className="nav__block-list">
             {sorts(topic).map(i => {
                 return (
                     <li

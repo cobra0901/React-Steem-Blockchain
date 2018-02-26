@@ -214,7 +214,6 @@ class PostsIndex extends React.Component {
                                 <SortOrder
                                     sortOrder={this.props.sortOrder}
                                     topic={this.props.topic}
-                                    current={category}
                                     horizontal={false}
                                 />
                             )}
