@@ -1,15 +1,14 @@
-span.icon-button {
-    display: block;
-}
-
 .icon-button__svg {
-    stroke: red;
+    display: block;
+    stroke: $color-blue-dark;
     stroke-width: 0.5;
     fill: transparent;
+    fill-rule: "evenodd";
+    transition: all 0.3s ease-in-out;
     :hover {
-        stroke: green !important;
-        stroke-width: 1;
-        fill: pink;
+        stroke: $color-border-light;
+        stroke-width: 0.5;
+        fill: $color-blue-dark;
         cursor: pointer;
     }
 }

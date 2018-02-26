@@ -8,6 +8,7 @@ import { APP_NAME } from 'app/client_config';
 import SortOrder from 'app/components/elements/SortOrder';
 import SearchInput from 'app/components/elements/SearchInput';
 import getPageTitle from 'app/utils/getPageTitle';
+import IconButton from 'app/components/elements/IconButton';
 
 // From TopRightMenu
 import { LinkWithDropdown } from 'react-foundation-components/lib/global/dropdown';
@@ -241,6 +242,9 @@ class Header extends React.Component {
                                     <div id="custom-search">
                                         <SearchInput />
                                     </div>
+                                </li>
+                                <li>
+                                        <IconButton />
                                 </li>
 
                                 {/*SUBMIT STORY*/}
