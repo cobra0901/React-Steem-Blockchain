@@ -94,14 +94,15 @@
 }
 
 .Header__userpic {
-  padding: 0;
-  position: relative;
+    display: block;
+    width: 42px;
+    height: 42px;
   a {
       padding: 6px;
   }
   .Userpic {
-    width: 36px !important;
-    height: 36px !important;
+    width: 42px !important;
+    height: 42px !important;
   }
 }
 
