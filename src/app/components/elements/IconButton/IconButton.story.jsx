@@ -8,7 +8,6 @@ storiesOf('Elements', module)
     .addDecorator(withKnobs)
     .add('IconButton', () => (
         <Center>
-            <IconButton
-            />
+            <IconButton />
         </Center>
     ));

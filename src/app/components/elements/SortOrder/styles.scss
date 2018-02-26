@@ -1,19 +1,18 @@
 .nav__block-list {
+    margin: 0px;
     display: flex;
-    width: 100%;
-    align-items: center;
-    padding: 0px 12px;
 }
 
-.nav__block-list-item {
+li.nav__block-list-item {
     margin: 0 10px;
-    text-align: center;
-    position: relative;
     list-style: none;
     padding: 15px 4px;
     transition: 0.3s all ease-in-out;
-    display: flex;
-    align-items: center;
+    a {
+        @extend .link;
+        @extend .link--primary;
+        font-family: helvetica, sans-serif;
+    }
     &--active {
         box-shadow: 0 2px 0 0 #06D6A9;
         a {
