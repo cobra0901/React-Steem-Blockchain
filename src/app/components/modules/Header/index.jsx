@@ -220,14 +220,6 @@ class Header extends React.Component {
                                         </svg>
                                     </Link>
                                 </li>
-                                {/*BETA*/}
-                                <li className="Header__top-steemit show-for-medium noPrint">
-                                    <Link to={logo_link}>
-                                        <span className="beta fade-in--10">
-                                            beta
-                                        </span>
-                                    </Link>
-                                </li>
                                 {/*SORT*/}
                                 <div className="nav__block show-for-large">
                                     <SortOrder
