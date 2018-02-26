@@ -170,10 +170,12 @@ const SidePanel = ({ alignment, visible, hideSidePanel, username }) => {
                 <ul className="vertical menu">
                     {sidePanelLinks['internal'].map(makeInternalLink)}
                 </ul>
-                <a className="menu-section">
-                    + {tt('navigation.third_party_exchanges')}
-                </a>
                 <ul className="vertical menu">
+                <li>
+                    <a className="menu-section">
+                        {tt('navigation.third_party_exchanges')}
+                    </a>
+                </li>
                     {sidePanelLinks['exchanges'].map(makeExternalLink)}
                 </ul>
                 <ul className="vertical menu">
