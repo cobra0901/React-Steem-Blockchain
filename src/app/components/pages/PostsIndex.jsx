@@ -194,12 +194,12 @@ class PostsIndex extends React.Component {
                 }
             >
                 <article className="articles">
-                    <div className="articles__header">
-                        <div className="articles__header-col">
-                            <h1 className="articles__h1 show-for-large">
+                    <div className="articles__header row">
+                        <div className="small-5 large-3 column">
+                            <h1 className="articles__h1 show-for-mq-large">
                                 {page_title}
                             </h1>
-                            <div className="articles__tag-selector">
+                            <span className="hide-for-mq-large">
                                 <Topics
                                     username={this.props.username}
                                     order={topics_order}
@@ -207,9 +207,12 @@ class PostsIndex extends React.Component {
                                     categories={categories}
                                     compact={true}
                                 />
-                            </div>
+                            </span>
                         </div>
-                        <div className="articles__header-col articles__header-col--right hide-for-large ">
+                        <div className="small-2 column">
+                            <ArticleLayoutSelector />
+                        </div>
+                        <div className="large-5 column hide-for-large ">
                             {category !== 'feed' && (
                                 <SortOrder
                                     sortOrder={this.props.sortOrder}
@@ -218,7 +221,6 @@ class PostsIndex extends React.Component {
                                 />
                             )}
                         </div>
-                        <ArticleLayoutSelector />
                     </div>
                     <hr className="articles__hr" />
                     {!fetching && (posts && !posts.size) ? (

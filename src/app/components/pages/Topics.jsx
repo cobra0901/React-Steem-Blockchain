@@ -49,16 +49,14 @@ const Topics = ({
         );
 
         return (
-            <span>
-                <Select
-                    name="select-topic"
-                    className="react-select"
-                    value={selected}
-                    onChange={handleChange}
-                    options={opts}
-                    clearable={false}
-                />
-            </span>
+            <Select
+                name="select-topic"
+                className="react-select"
+                value={selected}
+                onChange={handleChange}
+                options={opts}
+                clearable={false}
+            />
         );
     } else {
         const categoriesLinks = categories.map(cat => {

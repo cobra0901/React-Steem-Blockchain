@@ -1,3 +1,7 @@
+.articles__header-col {
+
+}
+
 
 .PostsList {
   clear: right;
@@ -241,9 +245,13 @@
   &__layout-selector {
     display: none;
     cursor: pointer;
-    @include MQ(M) {
-      display: inline-block;
-      padding-left: 14px;
+    @include MQ(FL) {
+      display: flex;
+      float: right;
+    }
+    @include MQ(FM) {
+        display: flex;
+        justify-content: center;
     }
   }
   &__icon--layout {
