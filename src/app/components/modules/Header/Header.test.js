@@ -7,10 +7,12 @@ import { _Header_ } from './index';
 
 configure({ adapter: new Adapter() });
 
+global.$STM_Config = { read_only_mode: false };
+
 describe('Header', () => {
     it('contains class .header', () => {
         expect(
-            shallow(<_Header_ location={{ pathname: 'whatever' }} />).is(
+            shallow(<_Header_ pathname={'whatever'} />).is(
                 '.Header'
             )
         ).toBe(true);
