@@ -3,12 +3,17 @@
     stroke: $color-blue-dark;
     stroke-width: 0.5;
     fill: transparent;
-    fill-rule: "evenodd";
+    fill-rule: evenodd;
     transition: all 0.3s ease-in-out;
     :hover {
         stroke: $color-border-light;
         stroke-width: 0.5;
         fill: $color-blue-dark;
         cursor: pointer;
+    }
+    .icon-button__inner {
+        fill-rule: evenodd;
+        stroke: 2;
+        fill: $color-blue-dark;
     }
 }
