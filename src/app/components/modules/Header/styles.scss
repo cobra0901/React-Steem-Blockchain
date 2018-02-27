@@ -34,6 +34,11 @@
   @media only screen and (min-width: 400px) {
     height: 37px;
   }
+  &-beta{
+    position: absolute;
+    bottom: 0;
+    left: 134px;
+  }
 }
 
 .Header__sort {

@@ -203,6 +203,9 @@ class Header extends React.Component {
                                     </g>
                                 </g>
                             </svg>
+                            <span className="Header__logotype-beta">
+                                beta
+                            </span>
                         </Link>
                     </div>
 
