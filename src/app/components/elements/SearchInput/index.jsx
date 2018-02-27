@@ -26,7 +26,7 @@ const SearchInput = () => {
                     </g>
                 </svg>
                 <input
-                    name="search-input"
+                    name="q"
                     className={'search-input__inner search-input__inner--small'}
                     type="search"
                     placeholder="Search"
