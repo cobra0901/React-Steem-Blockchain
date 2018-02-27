@@ -6,13 +6,14 @@ form.search-input {
         position: absolute;
         pointer-events: none;
         stroke: $color-blue-dark;
-        stroke-width: 1;
+        stroke-width: 1.2;
         fill: none;
     }
 
     input.search-input__inner {
         outline: none;
-        border: 1px solid $color-teal;
+        border: 1px solid $color-border-light;
+        
         padding: 9px 10px 9px 32px;
         width: 55px;
         border-radius: 25pc;
