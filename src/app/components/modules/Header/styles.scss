@@ -48,15 +48,19 @@
     > span {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
+        > a {
+            padding-left: 0.25rem;
+            padding-right: 0.25rem;
+            font-size: 1.125rem;
+        }
     }
     > a {
         padding-left: 0.25rem;
         padding-right: 0.25rem;
     }
-}
-
-.Header__buttons-list {
-    float: right;
+    div.LoadingIndicator {
+        padding-right: 0.5rem;
+    }
 }
 
 .Header__userpic {
@@ -70,18 +74,11 @@
 }
 
 span.Header__hamburger.toggle-menu {
-    position: relative;
-    cursor: pointer;
-    width: 1.2rem;
+    width: 1rem;
     height: 1rem;
     margin-left: 1rem;
+    cursor: pointer;
     @include hamburger();
-    > a {
-        position: absolute;
-        top: 0;
-        width: 2rem;
-        height: 2rem;
-    }
     &::after {
       transition: 0.2s all ease-in-out;
       @include themify($themes) {

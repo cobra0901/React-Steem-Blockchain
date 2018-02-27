@@ -6,8 +6,9 @@
 li.nav__block-list-item {
     margin: 0 10px;
     list-style: none;
-    padding: 18px 4px;
+    padding: 1.125rem 0.25rem;
     transition: 0.3s all ease-in-out;
+    font-size: 1.125rem;
     a {
         @extend .link;
         @extend .link--primary;

@@ -9,8 +9,6 @@ import SortOrder from 'app/components/elements/SortOrder';
 import SearchInput from 'app/components/elements/SearchInput';
 import getPageTitle from 'app/utils/getPageTitle';
 import IconButton from 'app/components/elements/IconButton';
-
-// From TopRightMenu
 import { LinkWithDropdown } from 'react-foundation-components/lib/global/dropdown';
 import * as userActions from 'app/redux/UserReducer';
 import * as appActions from 'app/redux/AppReducer';
@@ -118,7 +116,7 @@ class Header extends React.Component {
                 <IconButton />
             </Link>
         );
-        
+
         // The user feed is not-sortable.
         const showHeaderSort = category === 'feed' ? false : true;
 
@@ -210,80 +208,68 @@ class Header extends React.Component {
 
                     <div className="large-4 columns show-for-large large-centered Header__sort">
                         {/*SORT*/}
-                        {showHeaderSort &&
+                        {showHeaderSort && (
                             <SortOrder
                                 sortOrder={order}
                                 topic={category}
                                 horizontal={true}
                             />
-                        }
+                        )}
                     </div>
                     <div className="small-7 large-4 columns Header__buttons">
                         {/*CUSTOM SEARCH*/}
-                            <SearchInput />
+                        <SearchInput />
 
-                            {/*NOT LOGGED IN SIGN IN AND SIGN UP LINKS*/}
-                            {/*
-                                <li>
+                        {/*SUBMIT STORY*/}
+                        {submit_story}
+
+                        {/*USER AVATAR*/}
+                        {loggedIn && (
+                            <LinkWithDropdown
+                                closeOnClickOutside
+                                dropdownPosition="bottom"
+                                dropdownAlignment="right"
+                                dropdownContent={
+                                    <VerticalMenu
+                                        items={user_menu}
+                                        title={username}
+                                    />
+                                }
+                            >
+                                {!vertical && (
+                                    <a
+                                        className={'Header__userpic '}
+                                        href={account_link}
+                                        title={username}
+                                        onClick={e => e.preventDefault()}
+                                    >
+                                        <Userpic account={username} />
+                                    </a>
+                                )}
+                            </LinkWithDropdown>
+                        )}
+
+                        {/*LOGGED IN LOADING INDICATOR*/}
+                        {probablyLoggedIn && <LoadingIndicator type="circle" />}
+
+                        {/*NOT LOGGED IN SIGN IN AND SIGN UP LINKS*/}
+                        {!loggedIn &&
+                            !probablyLoggedIn && (
+                                <span className="Header__user-signup">
                                     <a href={SIGNUP_URL}>{tt('g.sign_up')}</a>
-                                </li>
-                                <li>
                                     <a href="/login.html" onClick={showLogin}>
                                         {tt('g.login')}
                                     </a>
-                                </li>
-                            */}
-
-                            {/*SUBMIT STORY*/}
-                            {submit_story}
-
-                            {/*USER AVATAR*/}
-                                {loggedIn && (
-                                    <LinkWithDropdown
-                                        closeOnClickOutside
-                                        dropdownPosition="bottom"
-                                        dropdownAlignment="right"
-                                        dropdownContent={
-                                            <VerticalMenu
-                                                items={user_menu}
-                                                title={username}
-                                            />
-                                        }
-                                    >
-                                        {!vertical && (
-                                            <span className={'Header__userpic '}>
-                                                <a
-                                                    href={account_link}
-                                                    title={username}
-                                                    onClick={e =>
-                                                        e.preventDefault()
-                                                    }
-                                                >
-                                                    <Userpic
-                                                        account={username}
-                                                    />
-                                                </a>
-                                            </span>
-                                        )}
-                                    </LinkWithDropdown>
-                                )}
-                            {/*LOGGED IN LOADING INDICATOR*/}
-                            {probablyLoggedIn && (
-                                <span
-                                    style={{
-                                        paddingTop: 0,
-                                        paddingBottom: 0,
-                                    }}
-                                >
-                                    <LoadingIndicator type="circle" inline />
                                 </span>
                             )}
-                            {/*HAMBURGER*/}
-                            <span className="toggle-menu Header__hamburger">
-                                <a href="#" onClick={showSidePanel}>
-                                    <span className="hamburger" />
-                                </a>
-                            </span>
+
+                        {/*HAMBURGER*/}
+                        <span
+                            onClick={showSidePanel}
+                            className="toggle-menu Header__hamburger"
+                        >
+                            <span className="hamburger" />
+                        </span>
                     </div>
                 </nav>
             </header>
