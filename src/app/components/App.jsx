@@ -233,7 +233,9 @@ class App extends React.Component {
                 })}
                 ref="App_root"
             >
-                <ConnectedSidePanel alignment="right" />
+                {process.env.BROWSER &&
+                    <ConnectedSidePanel alignment="right" />
+                }
 
                 {headerHidden ? null : miniHeader ? (
                     <MiniHeader />

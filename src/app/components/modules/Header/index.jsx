@@ -89,7 +89,6 @@ class Header extends React.Component {
             navigate,
         } = this.props;
 
-        // Logo should really always go to the same place.
         const logo_link =
             resolveRoute(pathname).params &&
             resolveRoute(pathname).params.length > 1 &&
@@ -119,6 +118,9 @@ class Header extends React.Component {
                 <IconButton />
             </Link>
         );
+        
+        // The user feed is not-sortable.
+        const showHeaderSort = category === 'feed' ? false : true;
 
         const feed_link = `/@${username}/feed`;
         const replies_link = `/@${username}/recent-replies`;
@@ -208,11 +210,13 @@ class Header extends React.Component {
 
                     <div className="large-4 columns show-for-large large-centered Header__sort">
                         {/*SORT*/}
-                        <SortOrder
-                            sortOrder={order}
-                            topic={category}
-                            horizontal={true}
-                        />
+                        {showHeaderSort &&
+                            <SortOrder
+                                sortOrder={order}
+                                topic={category}
+                                horizontal={true}
+                            />
+                        }
                     </div>
                     <div className="small-7 large-4 columns Header__buttons">
                         {/*CUSTOM SEARCH*/}
