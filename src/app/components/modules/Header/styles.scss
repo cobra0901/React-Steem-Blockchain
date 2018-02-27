@@ -26,18 +26,19 @@
 
 .Header__logotype {
   transition: 0.2s all ease-in-out;
+  height: 37px;
+  display: flex;
+  align-items: baseline;
   .icon-svg {
     @include themify($themes) {
       fill: themed('colorAccent');
     }
   }
-  @media only screen and (min-width: 400px) {
-    height: 37px;
-  }
+
   &-beta{
     position: absolute;
-    bottom: 0;
-    left: 134px;
+    top: 38px;
+    left: 136px;
   }
 }
 
