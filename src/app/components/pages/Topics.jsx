@@ -56,6 +56,9 @@ const Topics = ({
                 onChange={handleChange}
                 options={opts}
                 clearable={false}
+                autosize={false}
+                scrollMenuIntoView={false}
+                searchable={true}
             />
         );
     } else {

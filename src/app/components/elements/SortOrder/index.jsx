@@ -59,6 +59,9 @@ const SortOrder = ({ topic, sortOrder, horizontal }) => {
             onChange={handleChange(topic)}
             options={sorts(topic)}
             clearable={false}
+            autosize={false}
+            scrollMenuIntoView={false}
+            searchable={false}
         />
     );
 };
