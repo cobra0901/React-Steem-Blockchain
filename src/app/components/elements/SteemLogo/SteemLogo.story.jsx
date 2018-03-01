@@ -1,14 +1,13 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { withKnobs, boolean } from '@storybook/addon-knobs';
-import IconButton from './index';
+import SteemLogo from './index';
 import { Center } from '../Tooltip.story';
 
 storiesOf('Elements', module)
     .addDecorator(withKnobs)
-    .add('IconButton', () => (
+    .add('SteemLogo', () => (
         <Center>
-            <IconButton icon="pencil" />
-            <IconButton icon="magnifyingGlass" />
+            <SteemLogo />
         </Center>
     ));

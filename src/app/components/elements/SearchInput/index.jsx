@@ -1,7 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import tt from 'counterpart';
 
-const SearchInput = () => {
+const SearchInput = ({ type }) => {
     return (
         <span>
             <form
@@ -27,7 +28,9 @@ const SearchInput = () => {
                 </svg>
                 <input
                     name="q"
-                    className={'search-input__inner search-input__inner--small'}
+                    className={`search-input__inner search-input__inner--${
+                        type
+                    }`}
                     type="search"
                     placeholder="Search"
                 />
@@ -40,6 +43,14 @@ const SearchInput = () => {
             </form>
         </span>
     );
+};
+
+SearchInput.propTypes = {
+    type: PropTypes.oneOf(['small']),
+};
+
+SearchInput.defaultProps = {
+    type: 'small',
 };
 
 export default SearchInput;

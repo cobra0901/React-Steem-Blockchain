@@ -196,7 +196,7 @@ class PostsIndex extends React.Component {
                 <article className="articles">
                     <div className="articles__header row">
                         <div className="small-5 large-3 column">
-                            <h1 className="articles__h1 show-for-mq-large">
+                            <h1 className="articles__h1 show-for-mq-large articles__h1--no-wrap">
                                 {page_title}
                             </h1>
                             <span className="hide-for-mq-large">

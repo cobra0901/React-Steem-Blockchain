@@ -1,24 +1,41 @@
 .icon-button__svg {
     display: block;
-    stroke: $color-border-light;
-    stroke-width: 0.5;
     fill: transparent;
-    fill-rule: evenodd;
     transition: all 0.3s ease-in-out;
-    .icon-button__inner {
-        fill-rule: evenodd;
-        stroke: 2;
-        fill: $color-blue-dark;
+    .icon-button{
+        transition: all 0.3s ease-in-out;
+        &.icon-button__border {
+            stroke-width: 0.5;
+            stroke: $color-border-light;
+        }
+        &.icon-button__pencil {
+            fill-rule: evenodd;
+            fill: $color-blue-dark;
+        }
+        &.icon-button__magnifyingGlass {
+            transition: all 0.3s ease-in-out;
+            stroke-width: 1;
+            stroke: $color-blue-dark;
+        }
     }
+
     :hover {
         stroke: $color-border-light;
         stroke-width: 0.5;
         fill: $color-blue-dark;
         cursor: pointer;
-        .icon-button__inner {
-            fill-rule: evenodd;
-            stroke: 2;
-            fill: $color-border-light;
+        .icon-button {
+            &.icon-button__border {
+                stroke-width: 2;
+                stroke: $color-blue-dark;
+            }
+            &.icon-button__pencil {
+                fill-rule: evenodd;
+                fill: $color-border-light;
+            }
+            &.icon-button__magnifyingGlass {
+                stroke: $color-border-light;
+            }
         }
     }
 }

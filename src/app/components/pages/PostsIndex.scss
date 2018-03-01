@@ -1,8 +1,3 @@
-.articles__header-col {
-
-}
-
-
 .PostsList {
   clear: right;
 }
@@ -10,6 +5,12 @@
 .PostsList__summaries {
   list-style-type: none;
   margin-left: 0;
+}
+
+.PostsIndex {
+    .articles__h1--no-wrap {
+        white-space: nowrap;
+    }
 }
 
 .PostsIndex__topics {
