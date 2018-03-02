@@ -17,15 +17,7 @@ const SortOrder = ({
         topic ? `/${sort.value}/${topic}` : `/${sort.value}`;
 
     const handleChange = topic => sort => {
-        console.log('SORT', sort);
-        const route = topic ? `/${sort.value}/${topic}` : `/${sort.value}`;
         browserHistory.replace(makeRoute(topic, sort));
-    };
-
-    const handleNativeChange = topic => e => {
-        console.log(topic);
-        //const sort = e.target.value
-        //browserHistory.replace(makeRoute(topic, sort));
     };
 
     const sorts = topic => [
