@@ -11,7 +11,7 @@ storiesOf('Elements', module)
             <SortOrder
                 sortOrder={'promoted'}
                 topic={'life'}
-                horizontal={true}
+                horizontal={boolean('dropdown mode?', false)}
             />
         </Center>
     ));

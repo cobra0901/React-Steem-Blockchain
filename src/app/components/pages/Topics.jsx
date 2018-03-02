@@ -6,6 +6,7 @@ import tt from 'counterpart';
 import Select from 'react-select';
 import 'react-select/dist/react-select.css';
 import PropTypes from 'prop-types';
+import NativeSelect from 'app/components/elements/NativeSelect';
 
 const Topics = ({
     order,
@@ -14,6 +15,8 @@ const Topics = ({
     className,
     username,
     categories,
+    reactSelectClassName,
+    nativeClassName,
 }) => {
     const handleChange = selectedOption => {
         browserHistory.push(selectedOption.value);
@@ -49,17 +52,22 @@ const Topics = ({
         );
 
         return (
-            <Select
-                name="select-topic"
-                className="react-select"
-                value={selected}
-                onChange={handleChange}
-                options={opts}
-                clearable={false}
-                autosize={false}
-                scrollMenuIntoView={false}
-                searchable={true}
-            />
+            <span>
+                <Select
+                    name="select-topic"
+                    className={`react-select ${reactSelectClassName}`}
+                    value={selected}
+                    onChange={handleChange}
+                    options={opts}
+                    clearable={false}
+                    autosize={false}
+                    scrollMenuIntoView={false}
+                    searchable={true}
+                />
+                <span className={nativeClassName}>
+                    <NativeSelect options={opts} onChange={handleChange} />
+                </span>
+            </span>
         );
     } else {
         const categoriesLinks = categories.map(cat => {
@@ -110,10 +118,14 @@ Topics.propTypes = {
     order: React.PropTypes.string.isRequired,
     current: React.PropTypes.string,
     compact: React.PropTypes.bool.isRequired,
+    nativeClassName: PropTypes.oneOf(['show-for-small-only']),
+    reactSelectClassName: PropTypes.oneOf(['show-for-medium']),
 };
 
 Topics.defaultProps = {
     current: '',
+    nativeClassName: 'show-for-small-only',
+    reactSelectClassName: 'show-for-medium',
 };
 
 export default Topics;
