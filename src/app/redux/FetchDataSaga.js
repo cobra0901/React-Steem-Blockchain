@@ -11,6 +11,7 @@ import { api } from '@steemit/steem-js';
 const REQUEST_DATA = 'fetchDataSaga/REQUEST_DATA';
 const GET_CONTENT = 'fetchDataSaga/GET_CONTENT';
 const FETCH_STATE = 'fetchDataSaga/FETCH_STATE';
+const REQUEST_FEED = 'fetchDataSaga/REQUEST_FEED';
 
 export const fetchDataWatches = [
     watchLocationChange,
@@ -18,10 +19,15 @@ export const fetchDataWatches = [
     watchFetchJsonRequests,
     watchFetchState,
     watchGetContent,
+    watchFeedRequests,
 ];
 
 export function* watchDataRequests() {
     yield* takeLatest(REQUEST_DATA, fetchData);
+}
+
+export function* watchFeedRequests() {
+    yield* takeLatest(REQUEST_FEED, fetchFeed);
 }
 
 export function* watchGetContent() {
@@ -118,6 +124,10 @@ function* getTransferUsers(pathname) {
 function* getAccounts(usernames) {
     const accounts = yield call([api, api.getAccountsAsync], usernames);
     yield put(globalActions.receiveAccounts({ accounts }));
+}
+
+function* fetchFeed() {
+    const feed = yield call([api, api.getFeedHistory]);
 }
 
 export function* watchLocationChange() {
@@ -404,6 +414,11 @@ function* fetchJson({
 export const actions = {
     requestData: payload => ({
         type: REQUEST_DATA,
+        payload,
+    }),
+
+    requestFeed: payload => ({
+        type: REQUEST_FEED,
         payload,
     }),
 

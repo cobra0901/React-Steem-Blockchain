@@ -1,5 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 import tt from 'counterpart';
@@ -26,10 +26,15 @@ import {
 } from 'app/client_config';
 import * as transactionActions from 'app/redux/TransactionReducer';
 import * as globalActions from 'app/redux/GlobalReducer';
+import { actions as fetchDataSagaActions } from 'app/redux/FetchDataSaga';
 
 const assetPrecision = 1000;
 
 class UserWallet extends React.Component {
+    static propTypes = {
+        fetchFeed: PropTypes.func,
+    };
+
     constructor() {
         super();
         this.state = {
@@ -97,9 +102,10 @@ class UserWallet extends React.Component {
             account,
             current_user,
             open_orders,
+            fetchfeed,
         } = this.props;
         const gprops = this.props.gprops.toJS();
-
+        const newprice = this.props.getFeedHistory();
         if (!account) return null;
         let vesting_steem = vestingSteem(account.toJS(), gprops);
         let delegated_steem = delegatedSteem(account.toJS(), gprops);
@@ -818,6 +824,9 @@ export default connect(
             const name = 'changePassword';
             dispatch(globalActions.remove({ key: name }));
             dispatch(globalActions.showDialog({ name, params: { username } }));
+        },
+        fetchFeed: e => {
+            dispatch(fetchDataSagaActions.requestFeed({}));
         },
     })
 )(UserWallet);
