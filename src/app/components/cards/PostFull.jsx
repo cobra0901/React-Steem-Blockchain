@@ -403,7 +403,6 @@ class PostFull extends React.Component {
         } else {
             contentBody = (
                 <MarkdownViewer
-                    formId={formId + '-viewer'}
                     text={content_body}
                     jsonMetadata={jsonMetadata}
                     large

@@ -249,7 +249,7 @@ class CommentImpl extends React.Component {
             depth,
             anchor_link,
             showNegativeComments,
-            ignore_list,
+            author_ignored,
             noImage,
         } = this.props;
         const { onShowReply, onShowEdit, onDeletePost } = this;
@@ -271,9 +271,8 @@ class CommentImpl extends React.Component {
         const comment_link = `/${comment.category}/@${rootComment}#@${
             comment.author
         }/${comment.permlink}`;
-        const ignore = ignore_list && ignore_list.has(comment.author);
 
-        if (!showNegativeComments && (hide || ignore)) {
+        if (!showNegativeComments && (hide || author_ignored)) {
             return null;
         }
 
@@ -301,7 +300,6 @@ class CommentImpl extends React.Component {
         if (!this.state.collapsed && !hide_body) {
             body = (
                 <MarkdownViewer
-                    formId={post + '-viewer'}
                     text={comment.body}
                     noImage={noImage || gray}
                     hideImages={hideImages}
@@ -365,7 +363,8 @@ class CommentImpl extends React.Component {
         commentClasses.push(this.props.root ? 'root' : 'reply');
         if (hide_body || this.state.collapsed) commentClasses.push('collapsed');
 
-        let innerCommentClass = ignore || gray ? 'downvoted clearfix' : '';
+        let innerCommentClass =
+            author_ignored || gray ? 'downvoted clearfix' : '';
         if (this.state.highlight) innerCommentClass += ' highlighted';
 
         //console.log(comment);
@@ -495,11 +494,14 @@ const Comment = connect(
               ])
             : null;
 
+        const author = content.split('/')[0];
+        const author_ignored = ignore_list ? ignore_list.has(author) : false;
+
         return {
             ...ownProps,
             anchor_link: '#@' + content, // Using a hash here is not standard but intentional; see issue #124 for details
             username,
-            ignore_list,
+            author_ignored,
         };
     },
 

@@ -30,8 +30,6 @@ class MarkdownViewer extends Component {
         text: React.PropTypes.string,
         className: React.PropTypes.string,
         large: React.PropTypes.bool,
-        // formId: React.PropTypes.string, // This is unique for every editor of every post (including reply or edit)
-        canEdit: React.PropTypes.bool,
         jsonMetadata: React.PropTypes.object,
         highQualityPost: React.PropTypes.bool,
         noImage: React.PropTypes.bool,
@@ -58,8 +56,6 @@ class MarkdownViewer extends Component {
         return (
             np.text !== this.props.text ||
             np.large !== this.props.large ||
-            // np.formId !== this.props.formId ||
-            np.canEdit !== this.props.canEdit ||
             ns.allowNoImage !== this.state.allowNoImage
         );
     }
@@ -73,10 +69,7 @@ class MarkdownViewer extends Component {
         const { allowNoImage } = this.state;
         let { text } = this.props;
         if (!text) text = ''; // text can be empty, still view the link meta data
-        const {
-            large,
-            /*formId, canEdit, jsonMetadata,*/ highQualityPost,
-        } = this.props;
+        const { large, /*jsonMetadata,*/ highQualityPost } = this.props;
 
         let html = false;
         // See also ReplyEditor isHtmlTest

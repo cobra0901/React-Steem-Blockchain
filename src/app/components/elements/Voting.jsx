@@ -58,7 +58,7 @@ class Voting extends React.Component {
         active_votes: React.PropTypes.object,
         loggedin: React.PropTypes.bool,
         post_obj: React.PropTypes.object,
-        net_vesting_shares: React.PropTypes.number,
+        show_slider: React.PropTypes.bool,
         voting: React.PropTypes.bool,
         price_per_steem: React.PropTypes.number,
         sbd_print_rate: React.PropTypes.number,
@@ -90,9 +90,7 @@ class Voting extends React.Component {
             this.setState({ votingUp: up, votingDown: !up });
             const { myVote } = this.state;
             const { author, permlink, username, is_comment } = this.props;
-            if (
-                this.props.net_vesting_shares > VOTE_WEIGHT_DROPDOWN_THRESHOLD
-            ) {
+            if (this.props.show_slider) {
                 localStorage.setItem(
                     'voteWeight' +
                         (up ? '' : 'Down') +
@@ -177,7 +175,7 @@ class Voting extends React.Component {
             showList,
             voting,
             flag,
-            net_vesting_shares,
+            show_slider,
             is_comment,
             post_obj,
             price_per_steem,
@@ -215,7 +213,7 @@ class Voting extends React.Component {
                     className="Voting__adjust_weight_down"
                 >
                     {(myVote == null || myVote === 0) &&
-                        net_vesting_shares > VOTE_WEIGHT_DROPDOWN_THRESHOLD && (
+                        show_slider && (
                             <div className="weight-container">
                                 <div className="weight-display">
                                     - {weight / 100}%
@@ -449,10 +447,7 @@ class Voting extends React.Component {
 
         let voteUpClick = this.voteUp;
         let dropdown = null;
-        if (
-            myVote <= 0 &&
-            net_vesting_shares > VOTE_WEIGHT_DROPDOWN_THRESHOLD
-        ) {
+        if (myVote <= 0 && show_slider) {
             voteUpClick = this.toggleWeightUp;
             dropdown = (
                 <FoundationDropdown
@@ -527,17 +522,19 @@ export default connect(
         const username = current_account
             ? current_account.get('username')
             : null;
-        const vesting_shares = current_account
-            ? current_account.get('vesting_shares')
-            : 0.0;
-        const delegated_vesting_shares = current_account
-            ? current_account.get('delegated_vesting_shares')
-            : 0.0;
-        const received_vesting_shares = current_account
-            ? current_account.get('received_vesting_shares')
-            : 0.0;
-        const net_vesting_shares =
-            vesting_shares - delegated_vesting_shares + received_vesting_shares;
+
+        let show_slider = false;
+        if (current_account) {
+            if (
+                current_account.get('vesting_shares') -
+                    current_account.get('delegated_vesting_shares') +
+                    current_account.get('received_vesting_shares') >
+                VOTE_WEIGHT_DROPDOWN_THRESHOLD
+            ) {
+                show_slider = true;
+            }
+        }
+
         const voting = state.global.get(
             `transaction_vote_active_${author}_${permlink}`
         );
@@ -559,7 +556,7 @@ export default connect(
             permlink,
             username,
             active_votes,
-            net_vesting_shares,
+            show_slider,
             is_comment,
             post_obj: post,
             loggedin: username != null,
