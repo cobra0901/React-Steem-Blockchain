@@ -9,6 +9,7 @@ import ByteBuffer from 'bytebuffer';
 import { is, Set } from 'immutable';
 import * as globalActions from 'app/redux/GlobalReducer';
 import tt from 'counterpart';
+import { Map } from 'immutable';
 
 const Long = ByteBuffer.Long;
 const { string, func, object } = PropTypes;
@@ -425,7 +426,7 @@ module.exports = {
             );
             return {
                 head_block: state.global.getIn(['props', 'head_block_number']),
-                witnesses,
+                witnesses: state.global.get('witnesses', Map({})),
                 username,
                 witness_votes,
                 witnessVotesInProgress,
