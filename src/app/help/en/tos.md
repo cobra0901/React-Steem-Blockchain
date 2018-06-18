@@ -155,9 +155,9 @@ create an account independently of the Service. If you would like to use part
 of the Service, you must create a Steem blockchain account (“Account”).
 When you create an Account, you are strongly advised to take the following
 precautions, as failure to do so may result in loss of access to, and/or
-control over, your Account: (b) Provide accurate and truthful information; (c)
+control over, your Account: (a) Provide accurate and truthful information; (b)
 maintain the security of your Account by protecting your Account password and
-access to your computer and your Account; (e) Promptly notify us if you
+access to your computer and your Account; (c) Promptly notify us if you
 discover or otherwise suspect any security breaches related to your Account.
 
 8.2. You hereby accept and acknowledge that you take responsibility for all
@@ -178,9 +178,9 @@ transaction data to the Steem blockchain without requiring you to access the
 Steem blockchain command line interface.
 
 9.2. Account and Private Keys. Should you agree to create an Account through
-our Service, we generate a cryptographic private and public key pair that are
-provided solely to you and completely owned by you; provided however that we
-not store passwords or Private Keys for our you.  We never have access to your
+our Service, we will generate a cryptographic private and public key pair that is
+provided solely to and completely owned by you. Please note that we will
+never store passwords or Private Keys for you.  We never have access to your
 Private Key and do not custody any Private Keys on your behalf, and therefore,
 assume no responsibility for the management of the Private Key tied to your
 Account.  The Private Key uniquely match the Account name and must be used in
@@ -241,7 +241,7 @@ cancellation or modification requests.
 9.9. Taxes. It is your responsibility to determine what, if any, taxes apply to
 the transactions you for which you have submitted transaction details via the
 Services, and it is your responsibility to report and remit the correct tax to
-the appropriate tax authority. You agree that the we are not responsible for
+the appropriate tax authority. You agree that we are not responsible for
 determining whether taxes apply to your Steem blockchain transactions or for
 collecting, reporting, withholding, or remitting any taxes arising from any
 Steem blockchain transactions.
@@ -268,9 +268,8 @@ storing, outside of the Services, a backup of any Account and Private Key that
 you maintain in your Account.
 
 12.2. If you do not maintain a backup of your Account data outside of the
-Services, you will be may not be able to access STEEM, Steem Dollars and Steem
-Power associated with any Account maintained in your Account if we discontinue
-or deprecate the Services.
+Services, you may not be able to access STEEM, Steem Dollars and Steem
+Power associated with any Account if we discontinue or deprecate the Services.
 
 ## 13. Suspension or Termination of Service.
 
